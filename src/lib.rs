@@ -38,9 +38,9 @@ impl From<&EpochBlockFFI> for EpochBlock {
 
 #[no_mangle]
 pub unsafe extern "C" fn verify(
-    epoch: *const EpochBlockFFI,
+    epoch: EpochBlockFFI,
 ) -> bool {
-    let epoch = EpochBlock::from(&*epoch);
+    let epoch = EpochBlock::from(&epoch);
     dbg!(epoch);
     true
 }

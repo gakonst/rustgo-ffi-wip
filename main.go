@@ -14,25 +14,16 @@ type Pubkey struct {
 	X int
 }
 
-type Header struct {
-	index uint16
-	non_signers uint32
-	pubkeys *Pubkey
-	pubkeys_len int
-}
-
 func main() {
 	pubkeys := []Pubkey{
-		Pubkey { X: 1 },
-		Pubkey { X: 2 },
-		Pubkey { X: 3 },
+		Pubkey { X: 99 },
+		Pubkey { X: 128 },
 	}
-	header := Header {
+	header := C.EpochBlockFFI {
 		index: 3,
-		non_signers: 5,
-		pubkeys: &pubkeys[0],
-		pubkeys_len: len(pubkeys),
+		maximum_non_signers: 1,
+		new_pubkeys: (*C.PublicKey)(unsafe.Pointer(&pubkeys[0])),
+		pubkeys_len: C.ulong(len(pubkeys)),
 	}
-	h1 := (*C.EpochBlockFFI)(unsafe.Pointer(&header))
-	C.verify(h1)
+	C.verify(header)
 }
