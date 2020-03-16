@@ -34,5 +34,5 @@ func main() {
 		pubkeys_len: len(pubkeys),
 	}
 	h1 := (*C.EpochBlockFFI)(unsafe.Pointer(&header))
-	C.verify(h1, h2)
+	C.verify(h1)
 }

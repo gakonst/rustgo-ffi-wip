@@ -1,13 +1,3 @@
-// use std::io::Read;
-// use std::slice;
-// use algebra::{serialize::CanonicalDeserialize, Bls12_377};
-// use std::fmt::Display;
-
-// type Proof = groth16::Proof<Bls12_377>;
-// type VerifyingKey = groth16::VerifyingKey<Bls12_377>;
-
-/// cbindgen:field-names=[x]
-/// cbindgen:derive-eq
  #[derive(Debug, Clone)]
 pub struct PublicKey {
     pub x: u64
@@ -46,31 +36,11 @@ impl From<&EpochBlockFFI> for EpochBlock {
     }
 }
 
-// Deserializes the VK / Proof and verifies them against 
 #[no_mangle]
 pub unsafe extern "C" fn verify(
-    first_epoch: *const EpochBlockFFI,
+    epoch: *const EpochBlockFFI,
 ) -> bool {
-    let first_epoch = EpochBlock::from(&*first_epoch);
-    dbg!(first_epoch);
+    let epoch = EpochBlock::from(&*epoch);
+    dbg!(epoch);
     true
 }
-
-// fn verify_proof(vk: &VerifyingKey, proof: &Proof, first_epoch: &EpochBlock, last_epoch: &EpochBlock) -> Result<(), ()> {
-//     Ok(())
-// }
-
-// fn read_slice<C: CanonicalDeserialize>(ptr: *const u8, len: u32) -> Result<C, ()> {
-//     let data: Vec<u8> = unsafe { slice::from_raw_parts(ptr, len as usize).to_vec() };
-//     let ret = C::deserialize(&mut &data[..]).unwrap();
-//     Ok(ret)
-// }
-
-
-
-// #[cfg(test)]
-// mod tests {
-
-//     // generate a proof for a c
-
-// }
