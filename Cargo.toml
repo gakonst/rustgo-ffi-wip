@@ -1,0 +1,12 @@
+[package]
+name = "ffi-example"
+version = "0.1.0"
+authors = ["Georgios Konstantopoulos <me@gakonst.com>"]
+edition = "2018"
+
+[dependencies]
+# algebra = { git = "https://github.com/scipr-lab/zexe", features = ["bls12_377"] }
+# groth16 = { git = "https://github.com/scipr-lab/zexe" }
+
+[lib]
+crate-type = ["lib", "staticlib"]
